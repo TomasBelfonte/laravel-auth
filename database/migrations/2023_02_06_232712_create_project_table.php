@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string("cover_img")->nullable();
             $table->bigInteger("user_id");
-            $table->string("author");
             $table->string("title");
             $table->string("content");
             $table->boolean("public")->default(true);
