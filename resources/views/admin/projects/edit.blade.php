@@ -51,7 +51,7 @@
             <img src="{{ asset('storage/' . $project->cover_img) }}" alt="" class="img-thumbnail">
             </div>
 
-            <a href="{{ route('admin.project.index') }}" class="btn btn-secondary">Annulla</a>
+            <a href="{{ route('admin.projects.index') }}" class="btn btn-secondary">Annulla</a>
             <button class="btn btn-primary">Salva</button>
         </form>
 
