@@ -19,7 +19,7 @@ class ProjectController extends Controller
     public function index() {
         $projects = Project::all();
 
-        return view ("admin.projects.index", [
+        return view("admin.projects.index", [
             "projects" => $projects
         ]);
     }
@@ -31,7 +31,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view ("admin.project.create");
+        return view ("admin.projects.create");
     }
 
     /**
@@ -49,7 +49,7 @@ class ProjectController extends Controller
             "user_id" => Auth::user()->id
         ]);
 
-        return redirect()->route("admin.project.show", $project->id);
+        return redirect()->route("admin.projects.show", $project->id);
     }
 
     /**
@@ -59,7 +59,7 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Project $project) {
-        return view ("admin.projects.show", compact("project"));
+        return view("admin.projects.show", compact("project"));
     }
 
     /**
