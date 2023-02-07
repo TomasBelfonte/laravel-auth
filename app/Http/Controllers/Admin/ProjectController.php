@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreProjectRequest;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class ProjectController extends Controller
 {
@@ -28,7 +31,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view ("admin.project.create");
     }
 
     /**
@@ -37,9 +40,16 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $project = Project::create([
+            ...$data,
+            "user_id" => Auth::user()->id
+        ]);
+
+        return redirect()->route("admin.project.show", $project->id);
     }
 
     /**
@@ -48,9 +58,8 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(Project $project) {
+        return view ("admin.projects.show", compact("project"));
     }
 
     /**
